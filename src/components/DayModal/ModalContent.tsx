@@ -4,6 +4,7 @@ import {createKey, TargetParams, TargetsListContext} from 'context';
 export interface TargetsProps {
     date: Date;
 }
+
 export interface TargetProps {
     date: Date;
     target: TargetParams;
@@ -22,7 +23,7 @@ export const ModalContent: FC<TargetsProps> = ({date}) => {
         <>
             <input value={target} onChange={(e) => setTarget(e.target.value)} />
             <button onClick={handleClick}>Add target</button>
-            <ul>{targetsByDate?.map((target) => <Target target={target} date={date} />)}</ul>
+            <ul>{targetsByDate?.map((target) => <Target target={target} date={date} key={target?.id} />)}</ul>
         </>
     );
 };
@@ -31,15 +32,13 @@ const Target: FC<TargetProps> = ({target, date}) => {
     const {changeIsDone} = useContext(TargetsListContext);
     return (
         <li>
-            <div>
-                <input
-                    type='checkbox'
-                    value={target?.id}
-                    defaultChecked={target?.isDone}
-                    onChange={() => changeIsDone(target?.id, date)}
-                />
-                <label style={{textDecoration: target?.isDone ? 'line-through' : 'none'}}>{target?.value}</label>
-            </div>
+            <input
+                type='checkbox'
+                value={target?.id}
+                defaultChecked={target?.isDone}
+                onChange={() => changeIsDone(target?.id, date)}
+            />
+            <label style={{textDecoration: target?.isDone ? 'line-through' : 'none'}}>{target?.value}</label>
         </li>
     );
 };
