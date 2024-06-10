@@ -6,7 +6,9 @@ import {Month} from 'components';
 function App() {
     return (
         <TargetsListProvider>
-            <Month />
+            <div className='App'>
+                <Month />
+            </div>
         </TargetsListProvider>
     );
 }

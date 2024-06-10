@@ -2,7 +2,7 @@ import React, {FC, useRef} from 'react';
 import {Portal} from '../Portal';
 import {ModalContent} from './ModalContent';
 import {useClickOutsideOfComponent} from 'hooks';
-import {createDate, formattedNumber} from 'utils/helpers';
+import {createDate} from 'utils/helpers';
 
 export interface DayModalProps {
     onClose: () => void;
@@ -19,12 +19,9 @@ export const DayModal: FC<DayModalProps> = ({date, onClose}) => {
             <div className={'modal__wrap'} ref={ref}>
                 <div className={'modal__container'}>
                     <div className={'modal__header'}>
-                        <h4>
-                            {formattedNumber(+selectedDate.dayNumber)}.{formattedNumber(+selectedDate.monthIndex + 1)}.
-                            {selectedDate.year}
-                        </h4>
-                        <button className={'modal__header--closeButton'} onClick={onClose}>
-                            Х
+                        <h4>{selectedDate?.fullDate}</h4>
+                        <button className={'button button--outlined'} onClick={onClose} type={'button'}>
+                            x
                         </button>
                     </div>
                     <ModalContent date={date} />

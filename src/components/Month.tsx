@@ -4,52 +4,53 @@ import {DAYS_OF_WEEK} from 'utils/constants';
 import {useCalendar} from 'hooks';
 
 export const Month = () => {
-    const {selectedMonth, calendarDays, onClickArrow, setMode} = useCalendar({selectedDate: new Date()});
+    const {mode, selectedMonth, calendarDays, onClickArrow, setMode} = useCalendar({selectedDate: new Date()});
 
     return (
-        <div className='App'>
-            <div
-                style={{
-                    display: 'flex',
-                    flexDirection: 'row',
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    width: '100%'
-                }}>
-                <button onClick={() => setMode('week')}>Week</button>
-                <button onClick={() => setMode('month')}>Mont</button>
-                <p style={{paddingLeft: '20px'}}>
-                    {selectedMonth.monthName} {selectedMonth.year}
-                </p>
+        <>
+            <div className={'header container'}>
+                <button onClick={() => onClickArrow('left')} className={'button'} type={'button'}>
+                    Назад
+                </button>
+                <div className={'header__title'}>
+                    <h4 style={{textTransform: 'uppercase'}} className={'header__title--child'}>
+                        {selectedMonth.monthName} {selectedMonth.year}
+                    </h4>
+                    <button
+                        onClick={() => setMode('week')}
+                        className={'header__title--child button ' + (mode === 'week' ? '' : 'button--outlined')}
+                        type={'button'}>
+                        Неделя
+                    </button>
+                    <button
+                        onClick={() => setMode('month')}
+                        className={'header__title--child button ' + (mode === 'month' ? '' : 'button--outlined')}
+                        type={'button'}>
+                        Месяц
+                    </button>
+                </div>
+                <button onClick={() => onClickArrow('right')} className={'button'} type={'button'}>
+                    Вперед
+                </button>
             </div>
-            <div style={{display: 'flex', width: '100%'}}>
+            <div className={'calendar calendar__header'}>
                 {DAYS_OF_WEEK.map((item) => (
-                    <div style={{width: '14%'}} key={item}>
-                        <p style={{textTransform: 'uppercase'}}>{item}</p>
-                    </div>
+                    <p key={item}>{item}</p>
                 ))}
             </div>
-            <div
-                style={{
-                    display: 'grid',
-                    gridTemplateColumns: 'repeat(7, 1fr)',
-                    borderLeft: '1px solid',
-                    borderTop: '1px solid',
-                    marginBottom: '20px'
-                }}>
+            <div className={'calendar calendar__body'}>
                 {calendarDays?.map((day) => (
                     <Day
-                        {...{
-                            monthIndex: day?.monthIndex,
-                            dayNumber: day?.dayNumber,
-                            date: day?.date
-                        }}
                         key={day?.dayNumber + '-' + day?.month}
+                        {...{
+                            dayNumber: day?.dayNumber,
+                            dayNumberInWeek: day?.dayNumberInWeek,
+                            date: day?.date,
+                            isActive: day?.monthIndex === selectedMonth.monthIndex
+                        }}
                     />
                 ))}
             </div>
-            <button onClick={() => onClickArrow('left')}>Left</button>
-            <button onClick={() => onClickArrow('right')}>Right</button>
-        </div>
+        </>
     );
 };

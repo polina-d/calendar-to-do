@@ -8,6 +8,11 @@ export const createDate = (date?: Date) => {
     const year = d.getFullYear();
     const month = d.toLocaleDateString(LOCALE, {month: 'long'});
     const monthIndex = d.getMonth();
+    const fullDate = d.toLocaleString(LOCALE, {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    });
 
     return {
         date: d,
@@ -16,6 +21,7 @@ export const createDate = (date?: Date) => {
         dayNumberInWeek,
         month,
         monthIndex,
-        year
+        year,
+        fullDate
     };
 };

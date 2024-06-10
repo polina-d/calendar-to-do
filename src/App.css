@@ -1,32 +1,156 @@
+:root {
+    --primary-main: rgb(63, 120, 212);
+    --primary-action: rgb(26, 81, 171);
+    --primary-lite: rgb(203, 218, 242);
+    --gray-main: rgb(102, 105, 110);
+    --gray-lite: rgb(240, 240, 242);
+    --divider: rgb(185, 186, 189)
+}
+
 .App {
     text-align: center;
-    padding-right: 16px;
-    padding-left: 16px;
+    padding-top: 16px;
+    padding-bottom: 16px;
 }
 
-.clipping-container {
-    position: relative;
-    border: 1px solid #aaa;
-    margin-bottom: 12px;
+.button {
+    cursor: pointer;
+    border: none;
+    background: var(--primary-main);
+    color: rgb(255, 255, 255);
     padding: 12px;
-    width: 250px;
-    height: 80px;
-    overflow: hidden;
+    text-transform: uppercase;
+    border-radius: 8px
 }
 
-.modal {
+.button--outlined {
+    background: transparent;
+    color: var(--primary-main);
+}
+
+.button--icon {
+    background: transparent;
+    padding: 4px;
+}
+
+.button:hover {
+    opacity: 0.8;
+}
+
+.button:active {
+    background: var(--primary-action);
+}
+
+.button--outlined:active {
+    background: var(--primary-lite);
+}
+
+.button--icon:active {
+    background: var(--gray-lite);
+}
+
+.header {
     display: flex;
-    justify-content: space-evenly;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%
+}
+
+.header__title {
+    display: flex;
     align-items: center;
-    box-shadow: rgba(100, 100, 111, 0.3) 0 7px 29px 0;
-    background-color: white;
-    border: 2px solid rgb(240, 240, 240);
-    border-radius: 12px;
-    position: absolute;
-    width: 250px;
-    top: 70px;
-    left: calc(50% - 125px);
-    bottom: 70px;
+}
+
+.header__title--child:last-child {
+    margin-right: 0
+}
+
+@media screen and (max-width: 600px) {
+    .header {
+        align-items: flex-end;
+        margin-bottom: 10px;
+    }
+
+    .header__title {
+        flex-direction: column;
+    }
+
+    .header__title--child {
+        margin-bottom: 10px
+    }
+}
+
+@media screen and (min-width: 600px) {
+    .header {
+        align-items: center;
+    }
+
+    .header__title {
+        flex-direction: row;
+        padding-top: 20px;
+        padding-bottom: 20px;
+    }
+
+    .header__title--child {
+        margin-right: 12px
+    }
+}
+
+.calendar {
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    width: 100%;
+}
+
+.calendar__header {
+    text-transform: uppercase;
+    margin-bottom: 10px;
+    color: var(--primary-action);
+}
+
+.calendar__body {
+    border-left: 1px solid;
+    border-top: 1px solid;
+    border-color: var(--divider);
+}
+
+.calendar__cell {
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    height: 110px;
+    border-color: var(--divider);
+    text-align: start;
+    overflow: auto;
+    padding: 8px;
+    cursor: pointer;
+}
+
+.calendar__cell:hover {
+    background: var(--gray-lite);
+}
+
+.calendar__cell--inactive {
+    color: var(--divider);
+}
+
+.calendar__cell--day-off {
+    color: var(--primary-action);
+}
+
+.calendar__cell--targets {
+    margin: 0;
+    color: var(--primary-main);
+}
+
+.calendar__cell--target {
+    text-overflow: ellipsis;
+    overflow: hidden;
+    white-space: nowrap;
+    font-size: 12px;
+    border: 1px solid var(--primary-lite);
+    border-radius: 8px;
+    padding: 4px;
+    margin-bottom: 4px;
 }
 
 .modal__wrap {
@@ -43,12 +167,28 @@
 }
 
 .modal__container {
-    border: 1px solid rgba(0, 0, 0, 0.1);
+    border: 1px solid var(--divider);
     border-radius: 16px;
+    box-shadow: rgba(100, 100, 111, 0.3) 0 7px 29px 0;
     position: relative;
-    background: rgba(255, 255, 255, 1);
-    width: auto;
+    background: rgb(255, 255, 255);
     padding: 20px;
+    max-width: 800px;
+    max-height: 800px;
+}
+
+@media screen and (max-width: 800px) {
+    .modal__container {
+        width: 80%;
+        height: 80%;
+    }
+}
+
+@media screen and (min-width: 800px) {
+    .modal__container {
+        width: 50%;
+        height: 50%;
+    }
 }
 
 .modal__header {
@@ -59,14 +199,75 @@
     padding-bottom: 16px;
 }
 
-.modal__header--closeButton {
-    border: none;
-    cursor: pointer;
-    background: none;
-    color: rgb(0, 0, 0, 0.6);
-    margin-left: 20px;
+.add-form {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
 }
 
-.modal__header--closeButton:hover {
-    color: rgb(0, 0, 0, 1);
+.add-form__input {
+    width: 100%;
+    padding: 8px;
+    margin-right: 16px;
+    border: 1px solid;
+    border-color: var(--divider);
+    border-radius: 8px;
+}
+
+.add-form__input:focus {
+    outline: none;
+    border-color: var(--primary-main);
+}
+
+.add-form__list {
+    height: 100%;
+    overflow: auto;
+    scroll-behavior: smooth;
+}
+
+.add-form__list::-webkit-scrollbar {
+    width: 6px
+}
+
+.add-form__list::-webkit-scrollbar-thumb {
+    width: 4px;
+    border-radius: 4px;
+    background-color: var(--gray-lite);
+}
+
+.divider {
+    border-radius: 20px;
+}
+
+.divider:last-child {
+    display: none
+}
+
+.add-form__list-element {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+@media screen and (max-width: 600px) {
+    .App {
+        padding-right: 16px;
+        padding-left: 16px;
+    }
+}
+
+@media screen and (min-width: 600px) and (max-width: 1200px) {
+    .App {
+        padding-right: 24px;
+        padding-left: 24px;
+    }
+}
+
+@media screen and (min-width: 1200px) {
+    .App {
+        padding-right: 60px;
+        padding-left: 60px;
+    }
 }
