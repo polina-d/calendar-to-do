@@ -33,7 +33,7 @@ export const TargetsListProvider = ({children}: PropsWithChildren) => {
     };
 
     const addTarget = (text: string, date: Date) => {
-        if (!!text && !!date) {
+        if (!!text.trim() && !!date) {
             const dateKey = createKey(date);
             const target: TargetListParams = !!targets?.[dateKey]?.length
                 ? {
@@ -51,7 +51,7 @@ export const TargetsListProvider = ({children}: PropsWithChildren) => {
         }
     };
     const editTarget = (id: string, text: string, date: Date) => {
-        if (!!text && !!date && !!id) {
+        if (!!text.trim() && !!date && !!id) {
             const dateKey = createKey(date);
             const targetsByDate = targets?.[dateKey]?.map((i) => (i?.id === id ? {...i, value: text} : i));
             setTargets((prevState: TargetListParams) => ({...prevState, [dateKey]: targetsByDate}));
