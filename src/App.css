@@ -1,26 +1,7 @@
-:root {
-    --primary-main: rgb(63, 120, 212);
-    --primary-action: rgb(26, 81, 171);
-    --primary-lite: rgb(203, 218, 242);
-    --gray-main: rgb(102, 105, 110);
-    --gray-lite: rgb(240, 240, 242);
-    --divider: rgb(185, 186, 189)
-}
-
 .App {
     text-align: center;
     padding-top: 16px;
     padding-bottom: 16px;
-}
-
-.button {
-    cursor: pointer;
-    border: none;
-    background: var(--primary-main);
-    color: rgb(255, 255, 255);
-    padding: 12px;
-    text-transform: uppercase;
-    border-radius: 8px
 }
 
 .button--outlined {
@@ -31,14 +12,6 @@
 .button--icon {
     background: transparent;
     padding: 4px;
-}
-
-.button:hover {
-    opacity: 0.8;
-}
-
-.button:active {
-    background: var(--primary-action);
 }
 
 .button--outlined:active {

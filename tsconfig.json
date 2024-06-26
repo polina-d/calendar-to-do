@@ -22,6 +22,12 @@
     "incremental": true,
     "baseUrl": "./src",
     "paths": {
+      "pages/*": [
+        "pages/*"
+      ],
+      "pages": [
+        "pages"
+      ],
       "components/*": [
         "components/*"
       ],
@@ -31,17 +37,17 @@
       "utils/*": [
         "utils/*"
       ],
-      "context/*": [
-        "context/*"
-      ],
-      "context": [
-        "context"
-      ],
       "hooks/*": [
         "hooks/*"
       ],
       "hooks": [
         "hooks"
+      ],
+      "store/*": [
+        "store/*"
+      ],
+      "store": [
+        "store"
       ]
     }
   },

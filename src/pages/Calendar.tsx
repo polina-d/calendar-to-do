@@ -1,15 +1,15 @@
-import {Day} from './Day';
+import {Day} from 'components/Day';
 import React from 'react';
 import {DAYS_OF_WEEK} from 'utils/constants';
 import {useCalendar} from 'hooks';
 
-export const Month = () => {
-    const {mode, selectedMonth, calendarDays, onClickArrow, setMode} = useCalendar({selectedDate: new Date()});
+export const Calendar = () => {
+    const {mode, selectedMonth, calendarDays, onClickArrow, setMode} = useCalendar({date: new Date()});
 
     return (
         <>
             <div className={'header container'}>
-                <button onClick={() => onClickArrow('left')} className={'button'} type={'button'}>
+                <button onClick={() => onClickArrow('left')} type={'button'}>
                     Назад
                 </button>
                 <div className={'header__title'}>
@@ -18,18 +18,18 @@ export const Month = () => {
                     </h4>
                     <button
                         onClick={() => setMode('week')}
-                        className={'header__title--child button ' + (mode === 'week' ? '' : 'button--outlined')}
+                        className={'header__title--child ' + (mode === 'week' ? '' : 'button--outlined')}
                         type={'button'}>
                         Неделя
                     </button>
                     <button
                         onClick={() => setMode('month')}
-                        className={'header__title--child button ' + (mode === 'month' ? '' : 'button--outlined')}
+                        className={'header__title--child ' + (mode === 'month' ? '' : 'button--outlined')}
                         type={'button'}>
                         Месяц
                     </button>
                 </div>
-                <button onClick={() => onClickArrow('right')} className={'button'} type={'button'}>
+                <button onClick={() => onClickArrow('right')} type={'button'}>
                     Вперед
                 </button>
             </div>

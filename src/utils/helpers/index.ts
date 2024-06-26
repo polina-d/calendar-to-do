@@ -1,12 +1,9 @@
-export const formattedNumber = (number: number) => {
-    return number < 10 ? '0' + number.toString() : number.toString();
-};
+import {LOCALE} from 'utils/constants';
 
-export const createUniqueID = () => {
+export const createUniqueID = (): string => {
     return `id-${Date.now().toString(36)}-${Math.random().toString(36).slice(2)}`;
 };
-
-export const formatNumber = (number: number, titles: string[]) => {
+export const formatNumber = (number: number, titles: string[]): string => {
     //titles example ['день', 'дня', 'дней']
     const cases = [2, 0, 1, 1, 1, 2];
     if (!number) number = 0;
@@ -19,6 +16,14 @@ export const formatNumber = (number: number, titles: string[]) => {
                 : cases[Math.abs(number) % 10 < 5 ? Math.abs(number) % 10 : 5]
         ]
     );
+};
+
+export const createCalendarKeyByDate = (date: Date): string => {
+    return date?.toLocaleString(LOCALE, {
+        year: 'numeric',
+        month: 'numeric',
+        day: 'numeric'
+    });
 };
 
 export * from './createMonth';

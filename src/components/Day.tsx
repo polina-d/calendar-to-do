@@ -1,7 +1,7 @@
-import React, {FC, useContext, useState} from 'react';
+import React, {FC, useState} from 'react';
 import {DayModal} from './DayModal';
-import {TargetsListContext} from 'context';
 import {formatNumber} from 'utils/helpers';
+import {useTargetsByDate} from 'hooks';
 
 interface DayParams {
     date: Date;
@@ -11,11 +11,11 @@ interface DayParams {
 }
 
 export const Day: FC<DayParams> = (day) => {
+    const {targets} = useTargetsByDate({date: day?.date});
     const [openModal, setOpenModal] = useState(false);
-    const {getTargetsByDate} = useContext(TargetsListContext);
-    const targets = getTargetsByDate(day?.date);
     const isMobile = window.innerWidth < 600;
     const isDayOff = day?.dayNumberInWeek > 5;
+
     return (
         <>
             <div

@@ -1,5 +1,15 @@
 import {LOCALE} from 'utils/constants';
 
+export interface DateParams {
+    date: Date;
+    dayNumber: number;
+    day: number;
+    dayNumberInWeek: number;
+    month: string;
+    monthIndex: number;
+    year: number;
+    fullDate: string;
+}
 export const createDate = (date?: Date) => {
     const d = date ?? new Date();
     const dayNumber = d.getDate();

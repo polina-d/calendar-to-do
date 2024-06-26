@@ -1,15 +1,18 @@
 import React from 'react';
 import './App.css';
-import {TargetsListProvider} from 'context';
-import {Month} from 'components';
+import {Calendar} from 'components';
+import {Provider} from 'react-redux';
+import {setupStore} from 'store';
+
+const store = setupStore();
 
 function App() {
     return (
-        <TargetsListProvider>
+        <Provider store={store}>
             <div className='App'>
-                <Month />
+                <Calendar />
             </div>
-        </TargetsListProvider>
+        </Provider>
     );
 }
 
