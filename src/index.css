@@ -37,8 +37,8 @@ input[type="checkbox"] {
     width: 18px;
     height: 18px;
     accent-color: rgb(63, 120, 212);
+    margin-right: 12px;
 }
-
 button {
     cursor: pointer;
     border: none;

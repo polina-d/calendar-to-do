@@ -3,14 +3,14 @@ import {LOCALE} from 'utils/constants';
 export interface DateParams {
     date: Date;
     dayNumber: number;
-    day: number;
+    day: string;
     dayNumberInWeek: number;
     month: string;
     monthIndex: number;
     year: number;
     fullDate: string;
 }
-export const createDate = (date?: Date) => {
+export const createDate = (date?: Date): DateParams => {
     const d = date ?? new Date();
     const dayNumber = d.getDate();
     const day = d.toLocaleDateString(LOCALE, {weekday: 'long'});

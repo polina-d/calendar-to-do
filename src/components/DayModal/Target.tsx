@@ -21,18 +21,18 @@ export const Target: FC<TargetProps> = ({target, date, setEdit}) => {
         <>
             <li>
                 <div className={'add-form__list-element'}>
-                    <div style={{width: '90%'}}>
+                    <div style={{display: 'flex'}}>
+                        <input
+                            type='checkbox'
+                            value={target?.id}
+                            defaultChecked={target?.isDone}
+                            onChange={onChangeIsDone}
+                        />
                         <label style={{textDecoration: target?.isDone ? 'line-through' : 'none'}}>
-                            <input
-                                type='checkbox'
-                                value={target?.id}
-                                defaultChecked={target?.isDone}
-                                onChange={onChangeIsDone}
-                            />
                             {target?.value}
                         </label>
                     </div>
-                    <div>
+                    <div style={{display: 'flex'}}>
                         <button
                             className={'button--icon'}
                             type={'button'}

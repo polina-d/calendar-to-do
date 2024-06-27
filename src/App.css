@@ -32,6 +32,11 @@
 .header__title {
     display: flex;
     align-items: center;
+    width: 350px;
+}
+
+.header__title--child:first-child {
+    width: 50%
 }
 
 .header__title--child:last-child {
@@ -42,6 +47,7 @@
     .header {
         align-items: flex-end;
         margin-bottom: 10px;
+        width: auto;
     }
 
     .header__title {
@@ -49,6 +55,7 @@
     }
 
     .header__title--child {
+        width: auto;
         margin-bottom: 10px
     }
 }
@@ -87,23 +94,24 @@
     border-color: var(--divider);
 }
 
-.calendar__cell {
+.calendar__cell-wrap {
     border-right: 1px solid;
     border-bottom: 1px solid;
-    height: 110px;
+    min-height: 110px;
+    /*height: 110px;*/
     border-color: var(--divider);
     text-align: start;
     overflow: auto;
     padding: 8px;
-    cursor: pointer;
 }
 
-.calendar__cell:hover {
+.calendar__cell-wrap:hover {
     background: var(--gray-lite);
 }
 
 .calendar__cell--inactive {
-    color: var(--divider);
+    opacity: 0.5;
+    /*color: var(--divider);*/
 }
 
 .calendar__cell--day-off {
@@ -197,10 +205,12 @@
     height: 100%;
     overflow: auto;
     scroll-behavior: smooth;
+    overflow-y: scroll;
+    padding-right: 6px;
 }
 
 .add-form__list::-webkit-scrollbar {
-    width: 6px
+    width: 6px;
 }
 
 .add-form__list::-webkit-scrollbar-thumb {

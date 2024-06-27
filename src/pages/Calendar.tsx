@@ -46,7 +46,8 @@ export const Calendar = () => {
                             dayNumber: day?.dayNumber,
                             dayNumberInWeek: day?.dayNumberInWeek,
                             date: day?.date,
-                            isActive: day?.monthIndex === selectedMonth.monthIndex
+                            isActive: day?.monthIndex === selectedMonth.monthIndex,
+                            mode
                         }}
                     />
                 ))}
